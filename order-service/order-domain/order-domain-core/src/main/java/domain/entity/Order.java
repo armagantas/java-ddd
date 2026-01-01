@@ -1,0 +1,106 @@
+package domain.entity;
+
+import domain.valueobject.*;
+
+import java.util.List;
+
+public class Order extends AggregateRoot<OrderId> {
+    private final CustomerId customerId;
+    private final RestaurantId restaurantId;
+    private final StreetAddress deliveryAddress;
+    private final Money price;
+    private final List<OrderItem> items;
+
+    private TrackingId trackingId;
+    private OrderStatus status;
+    private List<String> failureMessages;
+
+    private Order(Builder builder) {
+        super.setId(builder.orderId);
+        customerId = builder.customerId;
+        restaurantId = builder.restaurantId;
+        deliveryAddress = builder.deliveryAddress;
+        price = builder.price;
+        items = builder.items;
+        trackingId = builder.trackingId;
+        status = builder.status;
+        failureMessages = builder.failureMessages;
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+
+    public StreetAddress getDeliveryAddress() {
+        return deliveryAddress;
+    }
+
+    public CustomerId getCustomerId() {
+        return customerId;
+    }
+
+    public RestaurantId getRestaurantId() {
+        return restaurantId;
+    }
+
+    public Money getPrice() {
+        return price;
+    }
+
+    public List<OrderItem> getItems() {
+        return items;
+    }
+
+    public TrackingId getTrackingId() {
+        return trackingId;
+    }
+
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    public List<String> getFailureMessages() {
+        return failureMessages;
+    }
+
+    public static final class Builder {
+        private OrderId orderId;
+        private CustomerId customerId;
+        private RestaurantId restaurantId;
+        private StreetAddress deliveryAddress;
+        private Money price;
+        private List<OrderItem> items;
+        private TrackingId trackingId;
+        private OrderStatus status;
+        private List<String> failureMessages;
+
+        private Builder() {
+
+        }
+
+        public Builder orderId(OrderId val) {
+            orderId = val;
+            return this;
+        }
+
+        public Builder trackingId(TrackingId val) {
+            trackingId = val;
+            return this;
+        }
+
+        public Builder status(OrderStatus val) {
+            status = val;
+            return this;
+        }
+
+        public Builder failureMessages(List<String> val) {
+            failureMessages = val;
+            return this;
+        }
+
+        public Order build() {
+            return new Order(this);
+        }
+    }
+}
