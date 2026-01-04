@@ -3,7 +3,10 @@ package domain.entity;
 import domain.valueobject.Money;
 import domain.valueobject.OrderId;
 import domain.valueobject.OrderItemId;
+import domain.valueobject.ProductId;
+import lombok.Builder;
 
+@Builder
 public class OrderItem extends BaseEntity<OrderItemId> {
     private OrderId orderId;
     private final Product product;
@@ -64,6 +67,26 @@ public class OrderItem extends BaseEntity<OrderItemId> {
 
         private Builder() {
 
+        }
+
+        public Builder product(Product val) {
+            product = val;
+            return this;
+        }
+
+        public Builder quantity(int val) {
+            quantity = val;
+            return this;
+        }
+
+        public Builder price(Money val) {
+            price = val;
+            return this;
+        }
+
+        public Builder subTotal(Money val) {
+            subTotal = val;
+            return this;
         }
 
         public Builder orderItemId(OrderItemId val) {

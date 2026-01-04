@@ -2,10 +2,12 @@ package domain.entity;
 
 import domain.exception.OrderDomainException;
 import domain.valueobject.*;
+import lombok.Builder;
 
 import java.util.List;
 import java.util.UUID;
 
+@Builder
 public class Order extends AggregateRoot<OrderId> {
     private final CustomerId customerId;
     private final RestaurantId restaurantId;
@@ -167,6 +169,31 @@ public class Order extends AggregateRoot<OrderId> {
 
         private Builder() {
 
+        }
+
+        public Builder customerId(CustomerId val) {
+            customerId = val;
+            return this;
+        }
+
+        public Builder restaurantId(RestaurantId val) {
+            restaurantId = val;
+            return this;
+        }
+
+        public Builder deliveryAddress(StreetAddress val) {
+            deliveryAddress = val;
+            return this;
+        }
+
+        public Builder price(Money val) {
+            price = val;
+            return this;
+        }
+
+        public Builder items(List<OrderItem> val) {
+            items = val;
+            return this;
         }
 
         public Builder orderId(OrderId val) {
