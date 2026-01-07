@@ -11,8 +11,9 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
-    <maven-compiler-plugin.version>3.9.0</maven-compiler-plugin.version>
+    <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <mockito.version>4.3.1</mockito.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -46,6 +47,12 @@
         <artifactId>common-domain</artifactId>
         <version>${project.version}</version>
       </dependency>
+      <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-core</artifactId>
+        <version>${mockito.version}</version>
+        <scope>test</scope>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -53,6 +60,7 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
+      <version>1.18.32</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -69,6 +77,13 @@
         <version>${maven-compiler-plugin.version}</version>
         <configuration>
           <release>17</release>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>1.18.32</version>
+            </path>
+          </annotationProcessorPaths>
         </configuration>
       </plugin>
     </plugins>
